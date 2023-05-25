@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="RecursionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-25T15:43:06" hostname="LAPTOP-Q1OEB49J" time="0.019">
+  <properties/>
+  <testcase name="testDepth()" classname="RecursionTest" time="0.019"/>
+  <system-out><![CDATA[1,2,3,4,5,6,
+final depth:4
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
