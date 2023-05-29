@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RecursionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-25T15:43:06" hostname="LAPTOP-Q1OEB49J" time="0.019">
+<testsuite name="RecursionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-05-29T15:16:55" hostname="LAPTOP-Q1OEB49J" time="0.021">
   <properties/>
-  <testcase name="testDepth()" classname="RecursionTest" time="0.019"/>
-  <system-out><![CDATA[1,2,3,4,5,6,
-final depth:4
-]]></system-out>
+  <testcase name="testSumK()" classname="RecursionTest" time="0.021"/>
+  <system-out><![CDATA[testSumK:[[2, 2, 2, 2], [2, 3, 3], [3, 2, 3], [3, 3, 2], [3, 5], [5, 3]]]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
