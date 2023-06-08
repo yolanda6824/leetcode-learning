@@ -116,4 +116,28 @@ public class RecursionTest {
         System.out.println("time1:"+time1);
         assert time == 3;
     }
+
+    @Test
+    public void countMaxFibLength() {
+        int[] arr1 = new int[]{1,2,3,4,5};
+        int[] arr2 = new int[]{1,3,7,8,11,12,14,18};
+        int[] arr3 = new int[]{2,5,6,7,8,10,12,17,24,41,65};
+        int result = recursion.countLongestFibLength(arr3);
+        System.out.println("result:"+result);
+        assert result == 5;
+    }
+
+    @Test
+    public void countSubStrLength() {
+        int result = recursion.longestCommonSubsequence2("abcdefg", "cfg");
+        assert result == 3;
+        int result1 = recursion.longestCommonSubsequence2("abcd", "efg");
+        assert result1 == 0;
+        int result2 = recursion.longestCommonSubsequence2("abcd", "cfg");
+        assert result2 == 1;
+        int result3 = recursion.longestCommonSubsequence2("abcd", "abcd");
+        assert result3 == 4;
+        int result4 = recursion.longestCommonSubsequence2("bsbininm", "jmjkbkjkv");
+        assert result4 == 1;
+    }
 }

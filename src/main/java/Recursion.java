@@ -106,6 +106,7 @@ public class Recursion {
 
     /**
      * 求一个集合的所有子集
+     *
      * @param numbers
      * @return
      */
@@ -155,6 +156,7 @@ public class Recursion {
 
     /**
      * 获取一个集合中，只含有k个数字的子集
+     *
      * @return
      */
     public List<List<Integer>> getKSubCollection(int[] numbers, int k) {
@@ -166,6 +168,7 @@ public class Recursion {
 
     /**
      * 递归用到集合的要记得回退，否则尽量都用临时变量
+     *
      * @param result
      * @param subset
      * @param numbers
@@ -188,6 +191,7 @@ public class Recursion {
 
     /**
      * 获取集合中总和==k的子集，数字可重复
+     *
      * @param numbers
      * @param k
      * @return 思路，即每选择一个数字，都可以展开numbers.length个分支，即调用numbers.length次递归
@@ -248,6 +252,7 @@ public class Recursion {
     /**
      * 求子集之和 == k的集合
      * 因为集合的特点就在于，这个元素可以在/不在，所以如果规定顺序，就会变成排列
+     *
      * @param numbers
      * @param k
      * @return
@@ -255,13 +260,14 @@ public class Recursion {
     public List<List<Integer>> getSubsetEqualK1(int[] numbers, int k) {
         List<List<Integer>> result = new LinkedList<>();
         List<Integer> subset = new LinkedList<>();
-        getSubset1(result, subset, numbers, 0,  k);
+        getSubset1(result, subset, numbers, 0, k);
         return result;
     }
 
     /**
      * 这个的思路是：
      * 只考虑当前步骤，添加这个元素的下一步，是什么，不添加这个元素的下一步是什么
+     *
      * @param result
      * @param subset
      * @param numbers
@@ -286,6 +292,7 @@ public class Recursion {
 
     /**
      * 获取回文字符串
+     *
      * @return
      */
     public List<List<String>> getSubPalindrome(String str) {
@@ -295,7 +302,7 @@ public class Recursion {
         return result;
     }
 
-    private void getPalindrome(List<List<String>> result, List<String> subCollection, String str, String subStr, int index){
+    private void getPalindrome(List<List<String>> result, List<String> subCollection, String str, String subStr, int index) {
         if (index == str.length()) {
             if (!subCollection.isEmpty()) {
                 result.add(subCollection);
@@ -366,6 +373,7 @@ public class Recursion {
      */
     /**
      * 求爬楼梯的最小代价，一次可以走一格，或两格
+     *
      * @param numbers
      * @return
      */
@@ -375,7 +383,7 @@ public class Recursion {
             return 0;
         }
         if (length == 2) {
-            return Math.min(numbers[0],numbers[1]);
+            return Math.min(numbers[0], numbers[1]);
         }
         int cost0 = numbers[0], cost1 = numbers[1];
         int result = 0;
@@ -425,22 +433,23 @@ public class Recursion {
             return nums[0];
         }
         if (nums.length == 2) {
-            return Math.max(nums[0],nums[1]);
+            return Math.max(nums[0], nums[1]);
         }
         return Math.max(countSubMaxRoundStealNum(
-                Arrays.copyOfRange(nums, 0, nums.length - 1)),
+                        Arrays.copyOfRange(nums, 0, nums.length - 1)),
                 countSubMaxRoundStealNum(Arrays.copyOfRange(nums, 1, nums.length)));
     }
 
     /**
      * 计算不相邻房子的最多偷窃金额的第二种算法
+     *
      * @param nums
      * @return
      */
     public int countSubMaxRoundStealNum(int[] nums) {
 
         int steal0 = nums[0];
-        int steal1 = Math.max(nums[1],nums[0]);// 注意这一步
+        int steal1 = Math.max(nums[1], nums[0]);// 注意这一步
         int result = 0;
         for (int i = 2; i < nums.length; i++) {
             result = Math.max(steal1, steal0 + nums[i]);
@@ -452,6 +461,7 @@ public class Recursion {
 
     /**
      * 噢，递归解法，超出时间限制，那我用动态规划试试
+     *
      * @param nums
      * @return
      */
@@ -486,7 +496,7 @@ public class Recursion {
         if (nums.length >= 2) {
             for (int i = 1; i < nums.length; i++) {
                 for (int k = 0; k < nums[0].length; k++) {
-                    nums[i][k] = nums[i][k] + countLevelMinValue(nums[i-1], k);
+                    nums[i][k] = nums[i][k] + countLevelMinValue(nums[i - 1], k);
                 }
             }
             return countLevelMinValue(nums[nums.length - 1], -1);
@@ -507,6 +517,7 @@ public class Recursion {
     /**
      * 计算01字符串翻转的最小次数
      * 用数组模拟表格
+     *
      * @param str
      * @return
      */
@@ -514,7 +525,7 @@ public class Recursion {
         if (str.length() <= 1) {
             return 0;
         }
-        int[] arr = new int[]{str.charAt(0) == '0' ? 0 : 1,str.charAt(0) == '1' ? 0 : 1};
+        int[] arr = new int[]{str.charAt(0) == '0' ? 0 : 1, str.charAt(0) == '1' ? 0 : 1};
         for (int i = 1; i < str.length(); i++) {
             if (str.charAt(i) == '0') {
                 arr[1] = Math.min(arr[0], arr[1]) + 1;
@@ -529,20 +540,111 @@ public class Recursion {
     /**
      * 求最长的斐波那契数列长度
      * f(i,j) = f(j,k) + (a[j]+a[k] == a[i]? 1 : 0)
+     *
      * @param arr
      * @return
      */
-    /*public int countLongestFibLength(int[] arr) {
+    public int countLongestFibLength(int[] arr) {
         int[][] result = new int[arr.length][arr.length];
         for (int i = 1; i < arr.length; i++) {
             for (int j = 0; j < i; j++) {
-                if (i < 2) {
+                if (i < 2 || j < 1) {
                     result[i][j] = 2;
                 } else {
-                    result[i][j] =
+                    int maxValue = 0;
+                    for (int k = 0; k < j; k++) {
+                        maxValue = Math.max(result[j][k] + (arr[j] + arr[k] == arr[i] ? 1 : 0), maxValue);
+                    }
+                    result[i][j] = maxValue;
                 }
             }
         }
-    }*/
+        int maxValue = 0;
+        for (int i = 0; i < arr.length; i++) {
+            maxValue = Math.max(result[arr.length - 1][i], maxValue);
+        }
+        return maxValue;
+    }
 
+    /**
+     * 求最长公共子序列
+     * abcdef与cefg的公共子序列是cef
+     *
+     * @param text1
+     * @param text2
+     * @return
+     */
+    public int longestCommonSubsequence(String text1, String text2) {
+        if (text1.length() == 0 || text2.length() == 0) {
+            return 0;
+        }
+        int[][] result = new int[text1.length()][text2.length()];
+        for (int i = 0; i < text1.length(); i++) {
+            for (int j = 0; j < text2.length(); j++) {
+                if (i == 0 && j == 0) {
+                    result[0][0] = text1.charAt(0) == text2.charAt(0) ? 1 : 0;
+                } else {// 这里状态方程写错了
+                    if (text1.charAt(i) == text2.charAt(j)) {
+                        if (i >= 1 && j >= 1) {
+                            result[i][j] = result[i - 1][j - 1] + 1;
+                        } else {
+                            result[i][j] = 1;
+                        }
+                    } else {
+                        int max1 = i >= 1 ? result[i - 1][j] : 0;
+                        int max2 = j >= 1 ? result[i][j - 1] : 0;
+                        result[i][j] = Math.max(max1, max2);
+                    }
+                }
+            }
+        }
+        return result[text1.length() - 1][text2.length() - 1];
+    }
+
+    /**
+     * 简化写法的版本
+     * @param text1
+     * @param text2
+     * @return
+     */
+    public int longestCommonSubsequence1(String text1, String text2) {
+        if (text1.length() == 0 || text2.length() == 0) {
+            return 0;
+        }
+        int[][] result = new int[text1.length() + 1][text2.length() + 1];
+        for (int i = 0; i < text1.length(); i++) {
+            for (int j = 0; j < text2.length(); j++) {
+                if (text1.charAt(i) == text2.charAt(j)) {
+                    result[i + 1][j + 1] = result[i][j] + 1;
+                } else {
+                    result[i + 1][j + 1] = Math.max(result[i][j + 1], result[i + 1][j]);
+                }
+            }
+        }
+        return result[text1.length()][text2.length()];
+    }
+
+    /**
+     * 简化空间的版本
+     */
+    public int longestCommonSubsequence2(String text1, String text2) {
+        if (text1.length() == 0 || text2.length() == 0) {
+            return 0;
+        }
+        int[][] result = new int[2][2];
+        for (int i = 0; i < text1.length(); i++) {
+            for (int j = 0; j < text2.length(); j++) {
+                if (text1.charAt(i) == text2.charAt(j)) {
+                    result[1][1] = result[0][0] + 1;
+                } else {
+                    result[1][1] = Math.max(result[0][1], result[1][0]);
+                }
+                result[0][0] = result[0][1];
+                result[1][0] = result[1][1];
+            }
+            result[0][0] = result[1][0];
+            result[0][1] = result[1][1];
+        }
+        return result[1][1];
+    }
 }
